@@ -1,0 +1,28 @@
+refreshList = () => {
+    axios
+      .get("/api/didTheyMove/")
+      .then((res) => this.setState({ todoList: res.data }))
+      .then(()=>console.log("HELLO"))
+      .catch((err) => console.log(err));
+  };
+
+  handleSubmit = () => {
+    console.log("blah blah blah")
+    const item = {'title':'test5', 'description': 'real test', 'completed': true, id: 4}
+    if (item.id) {
+      axios
+        .put(`/api/didTheyMove/${item.id}/`, item)
+        .then((res) => this.refreshList());
+      return;
+    }
+    axios
+      .post("/api/didTheyMove/", item)
+      .then((res) => this.refreshList());
+  };
+
+  handleRemove = () => {
+    const item = {'title':'test5', 'description': 'real test', 'completed': true, id: 7}
+    axios
+      .delete(`/api/didTheyMove/${item.id}/`)
+      .then((res) => this.refreshList());
+  };
