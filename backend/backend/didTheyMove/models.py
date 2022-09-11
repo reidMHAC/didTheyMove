@@ -25,6 +25,10 @@ class DidTheyMove(models.Model):
     def _str_(self):
         return self.customer
 
+# class ClientList(models.Model):
+#     client = models.CharField()
+#     list = models.FileField()
+
 class ZipCodes(models.Model):
     lastChecked = models.DateField(default=date.today)
     zipCode = models.IntegerField()
