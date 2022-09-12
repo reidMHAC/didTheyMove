@@ -1,7 +1,7 @@
 from .utils import getAllZipcodes
 from .serializers import DidTheyMoveSerializer, CheckMovedSerializer, ClientlistSerializer, MyTokenObtainPairSerializer, RegisterSerializer
-from django.contrib.auth.models import User
 from .models import *
+# from django.contrib.auth.models import User
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.decorators import api_view, permission_classes
@@ -68,7 +68,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 

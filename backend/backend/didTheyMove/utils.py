@@ -1,6 +1,10 @@
 from .models import DidTheyMove, HomeData
+from dotenv import load_dotenv
+import os
 import http.client
 import json
+
+RAPID_API = os.getenv('FLOOR_TOKEN')
 
 def getAllZipcodes(client):
     print("hello")
@@ -13,7 +17,7 @@ def getHomesForSale(zipCode):
     # conn = http.client.HTTPSConnection("us-real-estate.p.rapidapi.com")
 
     # headers = {
-    #     'X-RapidAPI-Key': "4cd4bcab69mshf0857385a60c44dp18eb70jsn6478abe490ea",
+    #     'X-RapidAPI-Key': RAPID_API,
     #     'X-RapidAPI-Host': "us-real-estate.p.rapidapi.com"
     #     }
 

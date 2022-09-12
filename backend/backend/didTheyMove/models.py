@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import date
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 STATUS = [
@@ -39,3 +40,11 @@ class HomeData(models.Model):
     status = models.CharField(max_length=20, choices=STATUS, default='Off Market')
     listDate = models.DateField(blank=True)
     property_id = models.CharField(max_length=12)
+
+class CustomUser(AbstractUser):
+    is_admin = models.BooleanField(('admin'), default=False)
+    # customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+# class Customer(models.Model):
+#     name = models.CharField(max_length=20)
+    # accessToken = models.

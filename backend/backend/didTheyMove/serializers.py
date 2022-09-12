@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import DidTheyMove
-from django.contrib.auth.models import User
+from .models import DidTheyMove, CustomUser
+# from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
@@ -16,7 +16,6 @@ class CheckMovedSerializer(serializers.ModelSerializer):
     class Meta:
         model = DidTheyMove
         fields = ['client']
-
 
 class ClientlistSerializer(serializers.Serializer):
     # initialize fields
@@ -38,7 +37,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('username', 'password', 'password2')
 
     def validate(self, attrs):
@@ -49,7 +48,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(
+        user = CustomUser.objects.create(
             username=validated_data['username']
         )
 
@@ -57,3 +56,5 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
